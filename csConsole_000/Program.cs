@@ -193,11 +193,46 @@ espacio  s entre    palabras");
             Console.WriteLine(Math.Max(val1, val2));
 
             /*
-             * if ((roll1 == roll2) && (roll2 == roll3))
+
+            if ((roll1 == roll2) && (roll2 == roll3))
+            {
+            Console.WriteLine("You rolled triples!  +6 bonus to total!");
+            total += 6;
+            }
+
+string[] fraudulentOrderIDs = { "A123", "B456", "C789" };
+
+string[] names = { "Bob", "Conrad", "Grant" };
+foreach (string name in names)
 {
-    Console.WriteLine("You rolled triples!  +6 bonus to total!");
-    total += 6;
+    Console.WriteLine(name);
 }
+
+
+int[] inventory = { 200, 450, 700, 175, 250 };
+
+foreach (int items in inventory)
+{
+
+}
+
+string name = "Bob";
+if (name.StartsWith("B"))
+{
+    Console.WriteLine("The name starts with 'B'!");
+}
+
+
+
+char userOption;
+
+int gameScore;
+
+float particlesPerMillion;
+
+bool processedCustomer;
+
+
             */
 
         }
@@ -205,21 +240,74 @@ espacio  s entre    palabras");
 
         public static void Cs008()
         {
-            //.
+            Random random = new Random();
+
+            string[] orderIDs = new string[5];
+
+            for (int i = 0; i < orderIDs.Length; i++)
+            {
+                // Get a random value that equates to ASCII letters A through E
+                int prefixValue = random.Next(65, 70);
+
+
+                // Convert the random value into a char, then a string
+                string prefix = Convert.ToChar(prefixValue).ToString();
+
+
+                // Create a random number, padd with zeroes
+                string suffix = random.Next(1, 1000).ToString("000");
+
+
+                // Combine the prefix and suffix together, then assign to current OrderID
+                orderIDs[i] = prefix + suffix;
+
+
+            }
+
+
+            // Print out each orderID
+            foreach (var orderID in orderIDs)
+            {
+                Console.WriteLine(orderID);
+            }
         }
 
+        
+
+        public static void Cs009()
+        {
+            string str = "The quick brown fox jumps over the lazy dog.";
+
+            // convert the message into a char array
+            char[] charMessage = str.ToCharArray();
+
+            // Reverse the chars
+            Array.Reverse(charMessage);
+            
+
+            int x = 0;
+            // count the o's
+            foreach (char i in charMessage) { if (i == 'o') { x++; } }
+
+            // convert it back to a string
+            string new_message = new String(charMessage);
+
+            // print it out
+            Console.WriteLine(new_message);
+            Console.WriteLine($"'o' appears {x} times.");
+        }
 
 
         public static void Main(string[] args)
         {
             /*
-             The worst that can happen is that you'll get a compilation error.
+             The worst that can happen is that you will get a compilation error.
                                                         Microsoft.
              */
 
 
-            // llamando la funcion necesario.
-            Cs008();
+            // llamando la funcion necesaria
+            Cs009();
 
         }
     }
