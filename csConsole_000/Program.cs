@@ -21,7 +21,7 @@ namespace csConsole_000
 
             Console.WriteLine("Your age is " + age);
             Console.WriteLine("El numero pi es " + numeroPI);
-            Console.WriteLine("Are you working ?");
+            Console.WriteLine("What are you doing?");
             Console.WriteLine(isTrue);
             Console.WriteLine("I am learning csharp");
 
