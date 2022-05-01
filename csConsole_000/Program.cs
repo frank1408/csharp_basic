@@ -10,12 +10,22 @@ namespace csConsole_000
             Console.Clear();
         }
 
+        
         public static void Cs001() {
             Console.WriteLine("Hello World!");
             int age = 24;
             decimal numeroPI = 3.141592m;
             string firstName = "Franklin";
             bool isTrue = false;
+
+
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+            string? variablePuedeSerNULL = default(string);
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+
+            Console.WriteLine(variablePuedeSerNULL);
+            variablePuedeSerNULL = "hay veces que puede ser null ...";
+            Console.WriteLine(variablePuedeSerNULL);
 
             Console.WriteLine("Your name is " + firstName);
 
@@ -25,7 +35,11 @@ namespace csConsole_000
             Console.WriteLine(isTrue);
             Console.WriteLine("I am learning csharp");
 
-
+            // tupla en C sharp
+            (double Sum, int Count) t2 = (4.5, 3);
+            Console.WriteLine($"Sum of {t2.Count} elements is {t2.Sum}.");
+            //Output:
+            //Sum of 3 elements is 4.5.
 
         }
 
@@ -303,6 +317,70 @@ bool processedCustomer;
 
         }
 
+        public static void Cs010()
+        {
+            Persona p1 = new Persona("Franklin", 21, new DateTime(1997,8,14) );
+            p1.PositionInTheCompany = "El mero mero";
+            // cuando las propiedades son public
+            //Console.WriteLine($"{p1.Nombre} is {p1.Edad} and birth on day {p1.Cumpleanos.Day}, month {p1.Cumpleanos.Month}, year {p1.Cumpleanos.Year}");
+
+            Console.WriteLine( p1.getNombre() );
+            Console.WriteLine( p1.getEdad() );
+            Console.WriteLine( p1.getCumpleanos() );
+            Console.WriteLine( p1.PositionInTheCompany );
+
+        }
+
+        public static void Cs011()
+        {
+            IAutomovil primerCarroEnExistir = new CarroConvencional();
+            primerCarroEnExistir.acelerar();
+            primerCarroEnExistir.frenar();
+            primerCarroEnExistir.girarIzquierda();
+            primerCarroEnExistir.girarDerecha();
+
+        }
+
+        public static int parametrosPorReferencia( ref int a, ref int b)
+        {
+            a += 9;
+            b += 18;
+            return a * b;
+        }
+        public static void Cs012()
+        {
+            int somethingA = 1;
+            int somethingB = -1;
+            int somethingC = 0;
+            Console.WriteLine($"varA {somethingA}");
+            Console.WriteLine($"varB {somethingB}");
+            Console.WriteLine($"varC {somethingC}");
+
+            somethingC = parametrosPorReferencia(ref somethingA, ref somethingB);
+
+            Console.WriteLine($"varA {somethingA}");
+            Console.WriteLine($"varB {somethingB}");
+            Console.WriteLine($"varC {somethingC}");
+
+
+        }
+
+        public static void parametrosPorReferencia2(int a,int b, ref int salida)
+        {
+            salida = (a+b)*9;
+        }
+        public static void Cs013()
+        {
+            int sa, sb, sc;
+            sa = sb = sc = 0;
+            sa = 7;
+            sb = 2;
+            Console.WriteLine($"{sa}, {sb}, {sc} ");
+            parametrosPorReferencia2(sa,sb,ref sc);
+            Console.WriteLine($"{sa}, {sb}, {sc} ");
+
+        }
+
 
         public static void Main(string[] args)
         {
@@ -313,7 +391,7 @@ bool processedCustomer;
 
 
             // llamando la funcion necesaria
-            Cs009();
+            Cs013();
 
         }
     }
