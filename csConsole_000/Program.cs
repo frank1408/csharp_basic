@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace csConsole_000
 {
@@ -17,7 +18,8 @@ namespace csConsole_000
             decimal numeroPI = 3.141592m;
             string firstName = "Franklin";
             bool isTrue = false;
-
+            byte excellent = 255;
+            Console.WriteLine(excellent);
 
 #pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
             string? variablePuedeSerNULL = default(string);
@@ -367,6 +369,8 @@ bool processedCustomer;
 
         public static void parametrosPorReferencia2(int a,int b, ref int salida)
         {
+            // ref int salida pudo ser
+            // out int salida
             salida = (a+b)*9;
         }
         public static void Cs013()
@@ -381,6 +385,97 @@ bool processedCustomer;
 
         }
 
+        public static string parametrosMultiples(string title, byte[] color_especifico)
+        {
+            // puedo obtener mas de 3, pero para ejemplo esta bien ...
+            if( color_especifico.Length == 3 )
+            {
+                return $"Color {title} = rgb({color_especifico[0]},{color_especifico[1]},{color_especifico[2]})";
+            }
+            return "";
+        }
+        
+        public static void Cs014()
+        {
+            byte[] color1 = new byte[3] { 255, 0, 0};
+            byte[] color3 = new byte[3] { 0, 255, 0 };
+            byte[] color2 = new byte[3] { 0, 0, 255 };
+
+            Console.WriteLine(parametrosMultiples("Red", color1));
+            Console.WriteLine(parametrosMultiples("Green", color3));
+            Console.WriteLine(parametrosMultiples("Blue", color2));
+
+            char continuar = 'n';
+            DateTime now1 = DateTime.Now;
+
+            StreamWriter sw = File.CreateText("my_first_file.txt");
+            sw.WriteLine($"opened at {now1}");
+            sw.WriteLine("Colores guardados");
+            sw.WriteLine(parametrosMultiples("Red", color1));
+            sw.WriteLine(parametrosMultiples("Green", color3));
+            sw.WriteLine(parametrosMultiples("Blue", color2));
+
+            now1 = DateTime.Now;
+            sw.WriteLine($"closed at {now1}");
+            sw.Close();
+
+            
+            
+            FileStream fs1 = File.Create("my_second_file.txt");
+            fs1.Write(color1,0, 1);
+            
+            fs1.Close();
+
+            System.Collections.Stack nombres = new System.Collections.Stack();
+
+            nombres.Push(1);
+            nombres.Push(2);
+            nombres.Push(3);
+            nombres.Push(4);
+
+            // el intelliSense, funciona al 50%
+            // falla por ratos y funciona por ratos tambien.
+
+
+            Console.WriteLine(nombres.Pop());
+            Console.WriteLine(nombres.Pop());
+            Console.WriteLine(nombres.Pop());
+            Console.WriteLine(nombres.Pop());
+
+            now1 = DateTime.Now;
+            Console.WriteLine($"Login {now1}");
+            do
+            {
+                
+                Console.Clear();
+//                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                switch ( continuar )
+                {
+                    case 'n':
+                        break;
+
+                    case 'y':
+                        Console.WriteLine("you preseed key y");
+                        break;
+
+                    case 's':
+                        Console.WriteLine("you preseed key s");
+                        break;
+
+                    default: throw new Exception("Unknown operator");
+                }
+
+                Console.WriteLine("Continue?  y/n ");
+                continuar = (char) Console.Read();
+                //Console.WriteLine(continuar);
+
+
+            } while (continuar != 'n');
+
+        }
+
 
         public static void Main(string[] args)
         {
@@ -391,7 +486,7 @@ bool processedCustomer;
 
 
             // llamando la funcion necesaria
-            Cs013();
+            Cs014();
 
         }
     }
